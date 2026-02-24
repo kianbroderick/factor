@@ -2,13 +2,13 @@
 
 module Main where
 
-import Data.List (nub, sort)
+import Data.List (intercalate, nub, sort)
 import System.Environment (getArgs)
 
 main :: IO ()
 main = do
   num <- fmap (read . head) getArgs
-  print $ findFactors num
+  putStrLn $ intercalate ", " (show <$> findFactors num)
 
 isqrt :: Integer -> Integer
 isqrt = floor @Double . sqrt . fromIntegral
