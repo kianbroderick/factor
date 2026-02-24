@@ -8,7 +8,11 @@ import System.Environment (getArgs)
 main :: IO ()
 main = do
   num <- fmap (read . head) getArgs
-  putStrLn $ intercalate ", " (show <$> findFactors num)
+  let factors = findFactors num
+  putStrLn $
+    if null factors
+      then show num ++ " is prime"
+      else intercalate ", " (map show factors)
 
 isqrt :: Integer -> Integer
 isqrt = floor @Double . sqrt . fromIntegral
